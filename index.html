@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tasha Amanda — AI Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,600;1,200;1,300&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #080808;
+    --bg2: #0e0e0e;
+    --bg3: #131313;
+    --border: #1e1e1e;
+    --border2: #2a2a2a;
+    --text: #ede9e0;
+    --text2: #888580;
+    --text3: #444;
+    --gold: #c8a96e;
+    --gold2: #e8c98e;
+    --gold-dim: rgba(200,169,110,0.12);
+    --red: #d45a5a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, opacity 0.2s;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 28px; height: 28px;
+    border: 1px solid rgba(200,169,110,0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.2s, height 0.2s, opacity 0.2s;
+  }
+  .cursor-ring.expanded { width: 48px; height: 48px; border-color: var(--gold); }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 48px;
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  nav.scrolled {
+    background: rgba(8,8,8,0.98);
+    border-color: var(--border2);
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text2);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text2);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-count {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.05em;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 48px 64px;
+    border-right: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-name .hl {
+    display: inline-block;
+    transition: color 0.15s;
+    color: var(--text);
+  }
+  .hero-name em .hl { color: var(--gold); }
+  .hero-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(64px, 8vw, 108px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 40px;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-desc {
+    font-size: 13px;
+    color: var(--text2);
+    max-width: 320px;
+    line-height: 1.8;
+    border-left: 1px solid var(--border2);
+    padding-left: 16px;
+  }
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 48px 64px;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .stat {
+    background: var(--bg);
+    padding: 24px;
+    position: relative;
+    transition: background 0.4s;
+    cursor: default;
+  }
+  .stat::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid transparent;
+    pointer-events: none;
+    transition: border-color 0.4s ease;
+  }
+  .stat.lit { background: #0d0d0d; }
+  .stat.lit::before { border-color: #2a2a2a; }
+  .stat.hovered { background: #111 !important; }
+  .stat.hovered::before { border-color: var(--gold) !important; transition: border-color 0.12s ease; }
+  .stat-num { transition: color 0.4s ease; }
+  .stat.lit .stat-num { color: var(--text); }
+  .stat.hovered .stat-num { color: #fff !important; transition: color 0.12s ease; }
+  .stat-label { transition: color 0.4s ease; }
+  .stat.lit .stat-label { color: var(--text3); }
+  .stat.hovered .stat-label { color: var(--text2) !important; transition: color 0.12s ease; }
+  .stat-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-num span { color: var(--gold); font-size: 22px; }
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .hero-scroll {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 48px;
+    color: var(--text3);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--border2);
+  }
+
+  /* Section headers */
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 32px 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text3);
+  }
+  .section-title span { color: var(--gold); margin-right: 8px; }
+
+  /* Projects */
+  .projects-container { border-bottom: 1px solid var(--border); }
+
+  .project-row {
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-row::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .project-row:hover::before,
+  .project-row.active::before { transform: scaleY(1); transform-origin: top; }
+  .project-row:hover { background: var(--bg2); }
+  .project-row.active { background: var(--bg2); }
+
+  .project-header {
+    display: grid;
+    grid-template-columns: 80px 1fr 200px 200px 40px;
+    align-items: center;
+    padding: 28px 48px;
+    gap: 24px;
+  }
+  .project-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.05em;
+  }
+  .project-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .project-row:hover .project-name,
+  .project-row.active .project-name { color: var(--gold); }
+  .project-tagline {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .project-domain {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .domain-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .domain-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .project-toggle {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    color: var(--text3);
+    text-align: right;
+    transition: transform 0.3s, color 0.2s;
+    user-select: none;
+  }
+  .project-row.active .project-toggle {
+    transform: rotate(45deg);
+    color: var(--gold);
+  }
+
+  .project-body {
+    display: none;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 0;
+    padding: 0 48px 40px;
+    border-top: 1px solid var(--border);
+  }
+  .project-body.open { display: grid; }
+  .project-body-left {
+    grid-column: 2;
+    padding-right: 48px;
+  }
+  .project-body-right {
+    padding-left: 48px;
+    border-left: 1px solid var(--border);
+  }
+
+  .detail-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--text3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    margin-top: 28px;
+  }
+  .detail-label:first-child { margin-top: 0; }
+  .detail-text {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    text-transform: uppercase;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .tag:hover { border-color: var(--gold); color: var(--gold); }
+  .tag.gold {
+    background: var(--gold-dim);
+    border-color: rgba(200,169,110,0.3);
+    color: var(--gold);
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+  }
+  .feature-list li {
+    font-size: 12px;
+    color: var(--text2);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+  .feature-list li:last-child { border-bottom: none; }
+  .feature-list li::before {
+    content: '→';
+    color: var(--gold);
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .stack-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stack-row:last-child { border-bottom: none; }
+  .stack-layer {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .stack-tech {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--text2);
+    text-align: right;
+    max-width: 200px;
+    line-height: 1.5;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid;
+  }
+  .status-badge.active {
+    border-color: rgba(100,200,120,0.3);
+    color: #6dc87a;
+    background: rgba(100,200,120,0.05);
+  }
+  .status-badge.beta {
+    border-color: rgba(200,169,110,0.3);
+    color: var(--gold);
+    background: var(--gold-dim);
+  }
+  .status-badge::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  /* About section */
+  .about-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .about-left {
+    padding: 64px 48px;
+    border-right: 1px solid var(--border);
+  }
+  .about-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+  }
+  .about-heading em { font-style: italic; color: var(--gold); }
+  .about-body {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.9;
+    max-width: 400px;
+  }
+  .about-right {
+    padding: 64px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .skill-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-row:last-child { border-bottom: none; }
+  .skill-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .skill-detail {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: right;
+  }
+
+  /* Footer */
+  footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-top: 1px solid var(--border);
+  }
+  .footer-cell {
+    padding: 40px 48px;
+    border-right: 1px solid var(--border);
+  }
+  .footer-cell:last-child { border-right: none; }
+  .footer-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    color: var(--text3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .footer-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    color: var(--text);
+    font-weight: 300;
+  }
+  .footer-value a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-value a:hover { color: var(--gold); }
+  .footer-copy {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+    letter-spacing: 0.05em;
+    margin-top: 8px;
+  }
+
+  /* Noise overlay */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.8s ease 0.1s both; }
+  .hero-desc    { animation: fadeUp 0.8s ease 0.4s both; }
+  .hero-stats   { animation: fadeUp 0.8s ease 0.5s both; }
+
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 120px 24px 48px; border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-right { padding: 48px 24px; }
+    .section-header { padding: 24px; }
+    .project-header { grid-template-columns: 40px 1fr 40px; gap: 12px; padding: 20px 24px; }
+    .project-tagline, .project-domain { display: none; }
+    .project-body { grid-template-columns: 1fr; padding: 0 24px 32px; }
+    .project-body-left { grid-column: 1; padding-right: 0; }
+    .project-body-right { padding-left: 0; border-left: none; border-top: 1px solid var(--border); padding-top: 24px; margin-top: 24px; }
+    .about-section { grid-template-columns: 1fr; }
+    .about-left { border-right: none; border-bottom: 1px solid var(--border); padding: 48px 24px; }
+    .about-right { padding: 48px 24px; }
+    footer { grid-template-columns: 1fr; }
+    .footer-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 32px 24px; }
+  }
+
+  /* Scroll progress bar */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    width: 0%;
+    height: 1px;
+    background: var(--gold);
+    z-index: 999;
+    transition: width 0.1s linear;
+  }
+
+  /* Page load scan line */
+  @keyframes scanLine {
+    0%   { top: 0; opacity: 0.6; }
+    100% { top: 100%; opacity: 0; }
+  }
+  .scan-line {
+    position: fixed;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    z-index: 998;
+    pointer-events: none;
+    animation: scanLine 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+  }
+
+  /* Domain dot pulse */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.6); }
+  }
+  .domain-dot { animation: pulse 2.8s ease-in-out infinite; }
+
+  /* Hero scroll line breathe */
+  @keyframes scrollBreath {
+    0%, 100% { width: 40px; opacity: 0.4; }
+    50%       { width: 64px; opacity: 0.9; }
+  }
+  .scroll-line { animation: scrollBreath 2.4s ease-in-out infinite; }
+
+  /* Project body content stagger on open */
+  .project-body .detail-label,
+  .project-body .detail-text,
+  .project-body .feature-list,
+  .project-body .stack-row,
+  .project-body .tag-list,
+  .project-body .status-badge {
+    transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1),
+                transform 0.5s cubic-bezier(0.16,1,0.3,1);
+  }
+  .project-body:not(.open) .detail-label,
+  .project-body:not(.open) .detail-text,
+  .project-body:not(.open) .feature-list,
+  .project-body:not(.open) .stack-row,
+  .project-body:not(.open) .tag-list,
+  .project-body:not(.open) .status-badge {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .project-body.open .detail-label,
+  .project-body.open .detail-text,
+  .project-body.open .feature-list,
+  .project-body.open .stack-row,
+  .project-body.open .tag-list,
+  .project-body.open .status-badge {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Tag hover shimmer */
+  .tag { transition: border-color 0.3s, color 0.3s, letter-spacing 0.3s; }
+  .tag:hover { letter-spacing: 0.08em; }
+
+  /* Scroll reveal — subtle fade in, never hide */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .section-header { animation: fadeInUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
+  .project-row    { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+  .skill-row      { animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+  .footer-cell    { animation: fadeInUp 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+  .about-left     { animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
+  .about-right    { animation: fadeInUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
+
+  /* Left-line on section header */
+  .section-header { position: relative; }
+  .section-header::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%) scaleX(0);
+    transform-origin: left;
+    width: 2px; height: 60%;
+    background: var(--gold);
+    animation: scaleX 0.6s cubic-bezier(0.16,1,0.3,1) 0.6s forwards;
+  }
+  @keyframes scaleX { to { transform: translateY(-50%) scaleX(1); } }
+
+  /* Subtle cursor-tracking shimmer on hero left panel */
+  .hero-left { transition: background 0.6s; }
+
+  /* Breathing underline on nav logo */
+  .nav-logo::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.4s cubic-bezier(0.16,1,0.3,1);
+    margin-top: 1px;
+  }
+  .nav-logo:hover::after { width: 100%; }
+
+  /* Project number count-up feel — subtle gold flash on hover */
+  .project-num { transition: color 0.3s; }
+  .project-row:hover .project-num { color: var(--gold); }
+
+  /* About heading words */
+  .about-heading .word {
+    display: inline-block;
+    animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) both;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="scan-line"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">T<span>.</span>Amanda</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="mailto:tasha@example.com">Contact</a></li>
+  </ul>
+  <span class="nav-count">06 AI Projects</span>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">AI Product Designer · Systems Builder</div>
+      <h1 class="hero-name" id="heroName"><span id="line1">TASHA</span><br><em id="line2">AMANDA</em></h1>
+      <p class="hero-desc">I design and ship AI-powered products — from interface and product logic to workflows, architecture, and real-world use cases. My work sits between design, systems thinking, and execution.</p>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stats">
+        <div class="stat" id="sb0">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Products Built</div>
+        </div>
+        <div class="stat" id="sb1">
+          <div class="stat-num">2</div>
+          <div class="stat-label">Live Systems</div>
+        </div>
+        <div class="stat" id="sb2">
+          <div class="stat-num">4</div>
+          <div class="stat-label">AI Workflow Types</div>
+        </div>
+        <div class="stat" id="sb3">
+          <div class="stat-num" style="font-size:22px;line-height:1.3">2025–<br>2026</div>
+          <div class="stat-label">Build Window</div>
+        </div>
+      </div>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        Scroll to explore
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-header reveal">
+      <span class="section-title"><span>01</span>Selected Systems</span>
+      <span class="section-title">2025 — 2026</span>
+    </div>
+
+    <div class="projects-container">
+
+      <!-- 01 — 3TIMESADAY -->
+      <div class="project-row" onclick="toggleProject(this)">
+        <div class="project-header">
+          <span class="project-num">(01)</span>
+          <h2 class="project-name">3timesaday</h2>
+          <span class="project-tagline">AI medication companion with adaptive reminders and behavior-aware tracking</span>
+          <span class="project-domain"><span class="domain-dot"></span><span class="domain-label">Health / Mobile</span></span>
+          <span class="project-toggle">+</span>
+        </div>
+        <div class="project-body">
+          <div></div>
+          <div class="project-body-left">
+            <div class="detail-label">Overview</div>
+            <p class="detail-text">A medication reminder app that adapts to how people actually behave, not just how they are supposed to. Combines reminder logic, OCR-based medicine input, voice logging, and supply tracking into one mobile system.</p>
+
+            <div class="detail-label">Key Features</div>
+            <ul class="feature-list">
+              <li>Scans medicine packaging and converts it into structured input</li>
+              <li>Learns real intake patterns and adjusts reminder timing</li>
+              <li>Supports natural voice-based dose logging</li>
+              <li>Predicts refill timing based on usage</li>
+              <li>Uses interactive reminders instead of passive alerts</li>
+            </ul>
+
+            <div class="detail-label">Status</div>
+            <span class="status-badge beta">Beta · Local Dev</span>
+          </div>
+          <div class="project-body-right">
+            <div class="detail-label">Tech Stack</div>
+            <div class="stack-row"><span class="stack-layer">Mobile</span><span class="stack-tech">React Native (Expo 52), TypeScript</span></div>
+            <div class="stack-row"><span class="stack-layer">Backend</span><span class="stack-tech">FastAPI, Python, Uvicorn</span></div>
+            <div class="stack-row"><span class="stack-layer">Database</span><span class="stack-tech">Supabase / PostgreSQL</span></div>
+            <div class="stack-row"><span class="stack-layer">AI / LLM</span><span class="stack-tech">DeepSeek (chat + vision)</span></div>
+            <div class="stack-row"><span class="stack-layer">Voice</span><span class="stack-tech">Expo Speech TTS + STT</span></div>
+
+            <div class="detail-label">Tags</div>
+            <div class="tag-list">
+              <span class="tag gold">FastAPI</span>
+              <span class="tag">React Native</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">DeepSeek</span>
+              <span class="tag">OCR</span>
+              <span class="tag">Adaptive ML</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 — HARVEST'S BEST -->
+      <div class="project-row" onclick="toggleProject(this)">
+        <div class="project-header">
+          <span class="project-num">(02)</span>
+          <h2 class="project-name">Harvest's Best</h2>
+          <span class="project-tagline">Operational system for frozen produce inventory, pricing, production, and sales</span>
+          <span class="project-domain"><span class="domain-dot"></span><span class="domain-label">B2B / Operations</span></span>
+          <span class="project-toggle">+</span>
+        </div>
+        <div class="project-body">
+          <div></div>
+          <div class="project-body-left">
+            <div class="detail-label">Overview</div>
+            <p class="detail-text">A full-stack B2B management platform for a frozen produce business in Indonesia. Built to centralize inventory, production batches, pricing logic, supplier records, and sales documents in one working system.</p>
+
+            <div class="detail-label">Core Logic</div>
+            <ul class="feature-list">
+              <li>Stock moves through sell, produce, and adjustment actions</li>
+              <li>Quotes, invoices, and pro-forma documents are generated from the system</li>
+              <li>Pricing can be customized per customer</li>
+              <li>Samples and stock movement are fully traceable</li>
+              <li>Audit trails support operational clarity</li>
+            </ul>
+
+            <div class="detail-label">Status</div>
+            <span class="status-badge active">Live · Railway</span>
+          </div>
+          <div class="project-body-right">
+            <div class="detail-label">Tech Stack</div>
+            <div class="stack-row"><span class="stack-layer">Backend</span><span class="stack-tech">FastAPI + Jinja2 Templates</span></div>
+            <div class="stack-row"><span class="stack-layer">Database</span><span class="stack-tech">Supabase / PostgreSQL + RLS</span></div>
+            <div class="stack-row"><span class="stack-layer">Frontend</span><span class="stack-tech">Vanilla HTML/CSS/JS, Tailwind</span></div>
+            <div class="stack-row"><span class="stack-layer">PDF</span><span class="stack-tech">WeasyPrint</span></div>
+            <div class="stack-row"><span class="stack-layer">Auth</span><span class="stack-tech">Supabase Magic Links</span></div>
+
+            <div class="detail-label">Tags</div>
+            <div class="tag-list">
+              <span class="tag gold">FastAPI</span>
+              <span class="tag">Supabase</span>
+              <span class="tag">Jinja2</span>
+              <span class="tag">PDF Gen</span>
+              <span class="tag">RLS</span>
+              <span class="tag">Railway</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 — PREDICT MY LIFE -->
+      <div class="project-row" onclick="toggleProject(this)">
+        <div class="project-header">
+          <span class="project-num">(03)</span>
+          <h2 class="project-name">Predict My Life</h2>
+          <span class="project-tagline">Multi-agent simulation engine for decisions, futures, and branching outcomes</span>
+          <span class="project-domain"><span class="domain-dot"></span><span class="domain-label">Simulation / AI</span></span>
+          <span class="project-toggle">+</span>
+        </div>
+        <div class="project-body">
+          <div></div>
+          <div class="project-body-left">
+            <div class="detail-label">Overview</div>
+            <p class="detail-text">A scenario simulation product that models multiple possible life paths through parallel agents. Built to explore consequences, decision trees, and compounded outcomes with more clarity than ordinary reflection tools.</p>
+
+            <div class="detail-label">Architecture Highlights</div>
+            <ul class="feature-list">
+              <li>Agents share memory through a persistent graph-based layer</li>
+              <li>Branching paths visualized in timelines and probability flows</li>
+              <li>Claude drives structured simulation reasoning</li>
+              <li>Local Docker deployment supports privacy-sensitive use</li>
+            </ul>
+
+            <div class="detail-label">Status</div>
+            <span class="status-badge beta">Beta · Docker Local</span>
+          </div>
+          <div class="project-body-right">
+            <div class="detail-label">Tech Stack</div>
+            <div class="stack-row"><span class="stack-layer">Backend</span><span class="stack-tech">Flask, Python</span></div>
+            <div class="stack-row"><span class="stack-layer">Frontend</span><span class="stack-tech">Vue 3 + D3.js</span></div>
+            <div class="stack-row"><span class="stack-layer">Memory</span><span class="stack-tech">Zep Cloud (GraphRAG)</span></div>
+            <div class="stack-row"><span class="stack-layer">LLM</span><span class="stack-tech">Claude (Anthropic)</span></div>
+            <div class="stack-row"><span class="stack-layer">Deploy</span><span class="stack-tech">Docker (local)</span></div>
+
+            <div class="detail-label">Tags</div>
+            <div class="tag-list">
+              <span class="tag gold">Claude</span>
+              <span class="tag">Multi-Agent</span>
+              <span class="tag">GraphRAG</span>
+              <span class="tag">D3.js</span>
+              <span class="tag">Vue 3</span>
+              <span class="tag">Simulation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 — TERRA DATA -->
+      <div class="project-row" onclick="toggleProject(this)">
+        <div class="project-header">
+          <span class="project-num">(04)</span>
+          <h2 class="project-name">Terra Data</h2>
+          <span class="project-tagline">Data classification and compliance system for Indonesian regulatory context</span>
+          <span class="project-domain"><span class="domain-dot"></span><span class="domain-label">Govtech / Compliance</span></span>
+          <span class="project-toggle">+</span>
+        </div>
+        <div class="project-body">
+          <div></div>
+          <div class="project-body-left">
+            <div class="detail-label">Overview</div>
+            <p class="detail-text">A governance and compliance platform built around Indonesia's UU PDP framework. Designed for environments that need auditability, role-based access, and data sovereignty through on-prem deployment.</p>
+
+            <div class="detail-label">Core Capabilities</div>
+            <ul class="feature-list">
+              <li>Classifies data assets against regulatory categories</li>
+              <li>Immutable audit logging through hash-chain structure</li>
+              <li>Supports on-prem deployment requirements</li>
+              <li>Separates permissions across admin, compliance, and viewer roles</li>
+              <li>Built for high-throughput processing with async architecture</li>
+            </ul>
+
+            <div class="detail-label">Status</div>
+            <span class="status-badge beta">Active Dev · On-Prem</span>
+          </div>
+          <div class="project-body-right">
+            <div class="detail-label">Tech Stack</div>
+            <div class="stack-row"><span class="stack-layer">Backend</span><span class="stack-tech">FastAPI (async), Python</span></div>
+            <div class="stack-row"><span class="stack-layer">Database</span><span class="stack-tech">PostgreSQL + SQLite</span></div>
+            <div class="stack-row"><span class="stack-layer">Frontend</span><span class="stack-tech">React + TypeScript</span></div>
+            <div class="stack-row"><span class="stack-layer">Audit</span><span class="stack-tech">Hash-chain log</span></div>
+            <div class="stack-row"><span class="stack-layer">Deploy</span><span class="stack-tech">Docker (on-prem)</span></div>
+
+            <div class="detail-label">Tags</div>
+            <div class="tag-list">
+              <span class="tag gold">FastAPI</span>
+              <span class="tag">React + TS</span>
+              <span class="tag">UU PDP</span>
+              <span class="tag">Audit Trail</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Govtech</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 — THE BOARDS -->
+      <div class="project-row" onclick="toggleProject(this)">
+        <div class="project-header">
+          <span class="project-num">(05)</span>
+          <h2 class="project-name">The Boards</h2>
+          <span class="project-tagline">AI advisory system for structured debate and business decision-making</span>
+          <span class="project-domain"><span class="domain-dot"></span><span class="domain-label">Strategy / Marketing</span></span>
+          <span class="project-toggle">+</span>
+        </div>
+        <div class="project-body">
+          <div></div>
+          <div class="project-body-left">
+            <div class="detail-label">Overview</div>
+            <p class="detail-text">A multi-agent decision environment where different AI roles argue, challenge assumptions, and log reasoning across sessions. Built to turn vague business thinking into clearer strategic choices.</p>
+
+            <div class="detail-label">System Design</div>
+            <ul class="feature-list">
+              <li>Multiple agents take distinct positions in debate</li>
+              <li>Model routing balances depth and cost</li>
+              <li>Decisions and arguments are recorded in audit logs</li>
+              <li>Learning loops improve future sessions</li>
+              <li>Interface is intentionally focused and minimal</li>
+            </ul>
+
+            <div class="detail-label">Status</div>
+            <span class="status-badge beta">Beta · Local</span>
+          </div>
+          <div class="project-body-right">
+            <div class="detail-label">Tech Stack</div>
+            <div class="stack-row"><span class="stack-layer">Backend</span><span class="stack-tech">FastAPI + Jinja2</span></div>
+            <div class="stack-row"><span class="stack-layer">Storage</span><span class="stack-tech">JSON files + JSONL logs</span></div>
+            <div class="stack-row"><span class="stack-layer">LLM</span><span class="stack-tech">Claude (Haiku / Sonnet / Opus)</span></div>
+            <div class="stack-row"><span class="stack-layer">Frontend</span><span class="stack-tech">Server-rendered HTML</span></div>
+            <div class="stack-row"><span class="stack-layer">Deploy</span><span class="stack-tech">Local</span></div>
+
+            <div class="detail-label">Tags</div>
+            <div class="tag-list">
+              <span class="tag gold">Claude</span>
+              <span class="tag">Multi-Agent</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Cost Routing</span>
+              <span class="tag">Strategy AI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 — JINX -->
+      <div class="project-row" onclick="toggleProject(this)">
+        <div class="project-header">
+          <span class="project-num">(06)</span>
+          <h2 class="project-name">Jinx</h2>
+          <span class="project-tagline">Three-layer AI mirror for psychological insight and pattern recognition</span>
+          <span class="project-domain"><span class="domain-dot"></span><span class="domain-label">Psychology / Mirror</span></span>
+          <span class="project-toggle">+</span>
+        </div>
+        <div class="project-body">
+          <div></div>
+          <div class="project-body-left">
+            <div class="detail-label">Overview</div>
+            <p class="detail-text">A conversational AI system designed to analyze internal patterns, generate reflective responses through distinct personas, and score output quality before presenting it back to the user.</p>
+
+            <div class="detail-label">Pipeline</div>
+            <ul class="feature-list">
+              <li>Analyst extracts emotional and psychological structure</li>
+              <li>Mirror generates the user-facing response in persona voice</li>
+              <li>Critic evaluates quality and triggers rewrite when needed</li>
+              <li>User state compounds over time into an evolving model</li>
+              <li>RAG supports depth through psychology and systems-oriented source material</li>
+            </ul>
+
+            <div class="detail-label">Status</div>
+            <span class="status-badge active">Live · Railway</span>
+          </div>
+          <div class="project-body-right">
+            <div class="detail-label">Tech Stack</div>
+            <div class="stack-row"><span class="stack-layer">Backend</span><span class="stack-tech">FastAPI + Uvicorn</span></div>
+            <div class="stack-row"><span class="stack-layer">Database</span><span class="stack-tech">SQLite (13 tables, WAL)</span></div>
+            <div class="stack-row"><span class="stack-layer">LLM</span><span class="stack-tech">Claude + DeepSeek / Qwen</span></div>
+            <div class="stack-row"><span class="stack-layer">RAG</span><span class="stack-tech">ChromaDB + sentence-transformers</span></div>
+            <div class="stack-row"><span class="stack-layer">Voice</span><span class="stack-tech">ElevenLabs + Whisper STT</span></div>
+
+            <div class="detail-label">Tags</div>
+            <div class="tag-list">
+              <span class="tag gold">Claude</span>
+              <span class="tag">3-Layer Pipeline</span>
+              <span class="tag">RAG</span>
+              <span class="tag">ChromaDB</span>
+              <span class="tag">ElevenLabs</span>
+              <span class="tag">Psychology</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about-section">
+    <div class="about-left">
+      <h2 class="about-heading"><span class="word">Designing</span><br><span class="word">things</span><br><span class="word">that</span> <em class="word">think.</em></h2>
+      <p class="about-body reveal">I come from UI/UX design, but my work has expanded into product systems, workflow logic, and AI-powered tools. I design around how a system should think, behave, and support decisions — then use modern tools to help bring it into working form.<br><br>I'm especially interested in products where interface alone is not enough: operational systems, intelligent workflows, decision environments, compliance tools, and behavioral products. My role is to bridge product vision, logic, and execution.</p>
+    </div>
+    <div class="about-right">
+      <div class="skill-row">
+        <span class="skill-name">Product Design</span>
+        <span class="skill-detail">Interface · UX · System Flow</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">AI Product Building</span>
+        <span class="skill-detail">LLM Workflows · Tooling · Prototypes</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Systems Thinking</span>
+        <span class="skill-detail">Logic · Architecture · Decision Design</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Technical Range</span>
+        <span class="skill-detail">HTML · CSS · JS · Python</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Data & Compliance</span>
+        <span class="skill-detail">PostgreSQL · Govtech</span>
+      </div>
+      <div class="skill-row">
+        <span class="skill-name">Working Style</span>
+        <span class="skill-detail">Founder-Minded · Solo Builder</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-cell">
+      <div class="footer-label">Location</div>
+      <div class="footer-value">Ibiza, Spain</div>
+      <div class="footer-copy">Working across Europe and Indonesia</div>
+    </div>
+    <div class="footer-cell">
+      <div class="footer-label">Contact</div>
+      <div class="footer-value"><a href="mailto:tasha@example.com">Get in touch</a></div>
+      <div class="footer-copy">Open to product, AI, and systems collaborations</div>
+    </div>
+    <div class="footer-cell">
+      <div class="footer-label">Built</div>
+      <div class="footer-value">2026</div>
+      <div class="footer-copy">Designed and built by Tasha Amanda</div>
+    </div>
+  </footer>
+</main>
+
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+
+  // --- CURSOR ---
+  var cursor = document.getElementById('cursor');
+  var ring = document.getElementById('cursorRing');
+  var mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+  document.addEventListener('mousemove', function(e) {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+  document.querySelectorAll('.project-row, a, button').forEach(function(el) {
+    el.addEventListener('mouseenter', function() { ring.classList.add('expanded'); });
+    el.addEventListener('mouseleave', function() { ring.classList.remove('expanded'); });
+  });
+
+  // --- NAV SCROLL ---
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // --- SCROLL PROGRESS ---
+  var bar = document.getElementById('scrollProgress');
+  if (bar) {
+    window.addEventListener('scroll', function() {
+      var total = document.body.scrollHeight - window.innerHeight;
+      bar.style.width = ((window.scrollY / total) * 100) + '%';
+    }, { passive: true });
+  }
+
+  // --- PROJECT ACCORDION ---
+  function toggleProject(row) {
+    var body = row.querySelector('.project-body');
+    var isOpen = row.classList.contains('active');
+    document.querySelectorAll('.project-row.active').forEach(function(r) {
+      r.classList.remove('active');
+      r.querySelector('.project-body').classList.remove('open');
+    });
+    if (!isOpen) {
+      row.classList.add('active');
+      body.classList.add('open');
+      var children = body.querySelectorAll('.detail-label, .detail-text, .feature-list, .stack-row, .tag-list, .status-badge');
+      children.forEach(function(el, i) { el.style.transitionDelay = (0.04 + i * 0.04) + 's'; });
+      setTimeout(function() { row.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 50);
+    }
+  }
+  window.toggleProject = toggleProject;
+
+  // --- STAGGER ANIMATION DELAYS ---
+  document.querySelectorAll('.project-row').forEach(function(el, i) { el.style.animationDelay = (0.1 + i * 0.055) + 's'; });
+  document.querySelectorAll('.skill-row').forEach(function(el, i)   { el.style.animationDelay = (0.1 + i * 0.06) + 's'; });
+  document.querySelectorAll('.footer-cell').forEach(function(el, i) { el.style.animationDelay = (0.1 + i * 0.08) + 's'; });
+  document.querySelectorAll('.about-heading .word').forEach(function(el, i) { el.style.animationDelay = (0.1 + i * 0.12) + 's'; });
+
+  // --- HERO MOUSE WARMTH ---
+  var heroLeft = document.querySelector('.hero-left');
+  if (heroLeft) {
+    document.addEventListener('mousemove', function(e) {
+      var rect = heroLeft.getBoundingClientRect();
+      var x = ((e.clientX - rect.left) / rect.width) * 100;
+      var y = ((e.clientY - rect.top) / rect.height) * 100;
+      heroLeft.style.background = 'radial-gradient(circle at ' + x + '% ' + y + '%, #0f0e0c 0%, #080808 60%)';
+    });
+  }
+
+  // --- NAME SCRAMBLE ANIMATION ---
+  var POOL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  function rnd() { return POOL[Math.floor(Math.random() * POOL.length)]; }
+
+  var el1 = document.getElementById('line1');
+  var el2 = document.getElementById('line2');
+
+  if (el1 && el2) {
+    function buildLine(el, text, gold) {
+      el.innerHTML = '';
+      var letters = [];
+      for (var i = 0; i < text.length; i++) {
+        var ch = text[i];
+        var s = document.createElement('span');
+        s.className = 'hl';
+        s.textContent = ch === ' ' ? ' ' : rnd();
+        if (gold) s.style.color = '#c8a96e';
+        el.appendChild(s);
+        letters.push({ s: s, t: ch });
+      }
+      return letters;
+    }
+
+    var L1 = buildLine(el1, 'TASHA', false);
+    var L2 = buildLine(el2, 'AMANDA', true);
+    var all = L1.concat(L2);
+    var locked = all.map(function() { return false; });
+
+    var bgInterval = setInterval(function() {
+      for (var i = 0; i < all.length; i++) {
+        if (!locked[i] && all[i].t !== ' ') all[i].s.textContent = rnd();
+      }
+    }, 38);
+
+    var idx = 0;
+    function lockNext() {
+      if (idx >= all.length) { clearInterval(bgInterval); return; }
+      var item = all[idx];
+      var currentIdx = idx;
+
+      if (item.t === ' ') {
+        item.s.textContent = ' ';
+        locked[currentIdx] = true;
+        idx++;
+        lockNext();
+        return;
+      }
+
+      var f = 0;
+      var burstFrames = 10;
+      var decelSteps = [40, 58, 78, 102, 132, 168];
+
+      function burst() {
+        item.s.textContent = rnd();
+        f++;
+        if (f < burstFrames) setTimeout(burst, 30);
+        else decelStep(0);
+      }
+
+      function decelStep(step) {
+        item.s.textContent = rnd();
+        if (step < decelSteps.length) {
+          setTimeout(function() { decelStep(step + 1); }, decelSteps[step]);
+        } else {
+          lockLetter();
+        }
+      }
+
+      function lockLetter() {
+        item.s.textContent = item.t;
+        item.s.style.opacity = '0.4';
+        locked[currentIdx] = true;
+        idx++;
+        setTimeout(function() { item.s.style.opacity = '1'; }, 80);
+        setTimeout(lockNext, 40);
+      }
+
+      burst();
+    }
+
+    setTimeout(lockNext, 400);
+  }
+
+  // --- STAT BOX FLICKER ---
+  var sbs = [];
+  for (var i = 0; i < 4; i++) {
+    var sb = document.getElementById('sb' + i);
+    if (sb) sbs.push(sb);
+  }
+
+  if (sbs.length === 4) {
+    var flickerTimer = null;
+    var hovering = false;
+
+    sbs.forEach(function(b) {
+      b.addEventListener('mouseenter', function() {
+        hovering = true;
+        clearTimeout(flickerTimer);
+        sbs.forEach(function(x) { x.classList.remove('hovered'); });
+        b.classList.add('hovered');
+      });
+      b.addEventListener('mouseleave', function() {
+        hovering = false;
+        b.classList.remove('hovered');
+        scheduleFlicker();
+      });
+    });
+
+    function flash() {
+      if (hovering) return;
+      var chosen = sbs[Math.floor(Math.random() * sbs.length)];
+      sbs.forEach(function(b) { b.classList.remove('lit'); });
+      chosen.classList.add('lit');
+      scheduleFlicker();
+    }
+
+    function scheduleFlicker() {
+      if (hovering) return;
+      clearTimeout(flickerTimer);
+      flickerTimer = setTimeout(flash, 280 + Math.random() * 620);
+    }
+
+    setTimeout(scheduleFlicker, 2800);
+  }
+
+});
+</script>
+</body>
+</html>
