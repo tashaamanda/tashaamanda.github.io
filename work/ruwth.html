@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ruwth · Hair Evidence Log · Tasha Amanda</title>
+  <meta name="description" content="ruwth is a privacy-first iOS app that turns sudden hair-shedding panic into a structured, doctor-ready evidence record, with an AI readout that never sees your photos. A case study by Tasha Amanda." />
+  <meta name="theme-color" content="#080808" />
+  <link rel="canonical" href="https://tashaamanda.com/work/ruwth.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="ruwth · Hair Evidence Log · Tasha Amanda" />
+  <meta property="og:description" content="ruwth is a privacy-first iOS app that turns sudden hair-shedding panic into a structured, doctor-ready evidence record, with an AI readout that never sees your photos. A case study by Tasha Amanda." />
+  <meta property="og:url" content="https://tashaamanda.com/work/ruwth.html" />
+  <meta property="og:image" content="https://tashaamanda.com/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ruwth · Hair Evidence Log · Tasha Amanda" />
+  <meta name="twitter:image" content="https://tashaamanda.com/assets/og-image.png" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23ffa6dd'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=type13" />
+</head>
+<body class="w-ruwth">
+  <div class="scroll-progress"></div>
+  <a class="cs-back" href="../index.html#work"><span class="arr">←</span> All work</a>
+
+  <!-- HERO -->
+  <header class="cs-hero">
+    <div class="wrap">
+      <p class="cs-kicker">Case 01 · Health · Privacy-first AI</p>
+      <h1 class="cs-title">ruwth</h1>
+      <p class="cs-tagline">Turning the panic of sudden hair loss into a calm, structured, <em>doctor-ready</em> record, with an AI that helps you read the data but never sees your photos.</p>
+
+      <div class="cs-meta-grid">
+        <div class="cs-meta"><div class="k">Role</div><div class="v">Product · UX · Front-end build (solo)</div></div>
+        <div class="cs-meta"><div class="k">Stack</div><div class="v">React Native (Expo) · Supabase · Gemini · Stripe</div></div>
+        <div class="cs-meta"><div class="k">For</div><div class="v">Women 25–45 with sudden diffuse shedding</div></div>
+        <div class="cs-meta"><div class="k">Status</div><div class="v"><span class="status status--building">Built · running on device</span></div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- DEVICE SHOWCASE -->
+  <section class="showcase">
+    <div class="wrap">
+      <div class="phone-grid">
+        <div class="mockup-phone"><img src="../assets/img/ruwth-home.png" alt="ruwth home: evidence dashboard with shed count, photos and the weekly check-in" loading="lazy" /></div>
+        <div class="mockup-phone raise"><img src="../assets/img/ruwth-health.png" alt="ruwth Health tab: lab biomarkers shown with calm sage and amber status colours" loading="lazy" /></div>
+        <div class="mockup-phone"><img src="../assets/img/ruwth-routine.png" alt="ruwth routine: scan your products to start tracking" loading="lazy" /></div>
+      </div>
+      <p class="mockup-cap">Real screens · built in React Native, running on device</p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">01 · The problem</div>
+      <div class="cs-body">
+        <p class="cs-lead">People doing all the right things about their hair loss still can't tell whether any of it is working.</p>
+        <p>Sudden, diffuse shedding is frightening in a specific way: it's visible, it's daily, and the cause is rarely obvious. The people I designed for had moved past "what's wrong with me" into "I'm doing something about it": they were on finasteride, minoxidil or supplements, they'd had blood work done, they had months of hair photos. And they were still flying blind.</p>
+        <p>The reason is that the evidence lives in disconnected places:</p>
+        <ul class="cs-list">
+          <li><strong>Lab results</strong> are a paper or PDF: read once, lost in a drawer. No way to track a value over time, and no idea which of the 30+ numbers actually matter for hair.</li>
+          <li><strong>Treatments</strong> live in memory. "I started finasteride in… February? And my shedding was… less? I think?"</li>
+          <li><strong>Photos</strong> are stranded in the camera roll: inconsistent angles, undated, mixed in with everything else.</li>
+          <li><strong>Symptoms</strong> are forgotten. A stressful week's flare-up is gone by the next doctor's visit.</li>
+        </ul>
+        <p>Nobody connects the dots. The dermatologist sees labs; the patient sees hair; no one is cross-referencing a ferritin trend against a treatment start date against photo progression against a symptom pattern. A dermatologist does exactly this in their head during a 15-minute appointment, but only with the fraction of the data the patient can remember on the spot.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- WHO -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">02 · Who it's for</div>
+      <div class="cs-body">
+        <p>Discovery and a strategy session narrowed a broad "hair app" down to one sharp user and one breaking moment: a woman noticing sudden shedding and feeling the floor drop out. Two personas drove the design: one who wants depth, one who needs speed. Designing for both at once forced better solutions than either alone.</p>
+
+        <div class="persona">
+          <div class="pname">Nadia, the active treater</div>
+          <div class="pmeta">Primary persona · wants depth</div>
+          <p>Already on medication, has blood work, takes photos. She wants to <em>see</em> whether her protocol is working and to walk into her next appointment with evidence, not vague recollection.</p>
+          <div class="pquote">"I'm doing everything I'm supposed to. I just want to know if it's actually helping."</div>
+        </div>
+
+        <div class="persona">
+          <div class="pname">Priya, the time-poor tracker</div>
+          <div class="pmeta">Secondary persona · needs speed</div>
+          <p>Will only keep using the app if every action is scan-and-done. Logging a symptom or a lab has to take seconds, or it won't happen at all.</p>
+          <div class="pquote">"If it takes more than ten seconds, I'm not going to do it."</div>
+        </div>
+
+        <p>That tension (depth for Nadia, speed for Priya) became a design constraint I held throughout: rich intelligence underneath, but never more than a tap or two to feed it.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- THE HARD PART -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">03 · The hard part</div>
+      <div class="cs-body">
+        <h3>An AI that helps you read your health data, without becoming a place that data leaks.</h3>
+        <p>The whole product depends on an AI that can reason over someone's blood work, medications and symptoms. That is also exactly the data you must never be careless with. So the privacy boundary wasn't a setting bolted on at the end. It was the first architectural decision, and it shaped the UX.</p>
+        <ul class="cs-list">
+          <li><strong>Only structured data leaves the device.</strong> Extracted biomarker values, treatment names, symptom severities. Never photos, never raw lab images. The AI reasons over numbers and labels, not pictures of you.</li>
+          <li><strong>The model is reached server-side, behind auth.</strong> Calls go through an authenticated edge function (JWT), gated by an explicit per-readout consent step and a usage rate-limit, not a raw client-to-model pipe.</li>
+          <li><strong>Image OCR was deliberately deferred.</strong> Reading values off a lab photo would mean sending a health image to a third-party model. I cut it from v1 specifically to keep those images on-device, and made manual entry fast instead.</li>
+          <li><strong>The AI readout sits beside the factual record, never inside it.</strong> The doctor-ready PDF is pure fact: counts, dates, values, trends. The AI interpretation is a separate surface, so the clinical document keeps its credibility.</li>
+        </ul>
+        <p>And the language is bounded at the prompt level. The readout never says "you have iron deficiency." It says "this is a pattern worth discussing with your doctor," with the specific question to ask. In health, the calm, non-diagnostic framing <em>is</em> the design: get it wrong and you've either frightened someone or implied a diagnosis you have no right to give.</p>
+        <div class="cs-quote">In a health product, trust isn't a feature you add. It's the substrate every other decision sits on.</div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- THE INTELLIGENCE -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">04 · The intelligence</div>
+      <div class="cs-body">
+        <p class="cs-lead">The value is never in one stream of data. It's in the connections between them.</p>
+        <p>Five streams feed the readout: blood work, treatments, products, symptoms and photos. Any one of them is a snapshot; the insight lives in the correlation. The engine is a reasoning layer with embedded hair-science knowledge, not a chatbot.</p>
+
+        <h4>It knows hair-optimal ranges, not just lab-normal ones</h4>
+        <p>A lab flags "ferritin 15: normal." For hair, 15 is well below optimal. That single distinction is most of the product's value: surfacing the values that are technically fine but suboptimal for hair, with the reason why.</p>
+        <table class="cs-table">
+          <thead><tr><th>Biomarker</th><th>Lab "normal"</th><th>Optimal for hair</th><th>Why it matters</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Ferritin</strong></td><td>12–150 ng/mL</td><td>&gt; 70 ng/mL</td><td>Most common nutritional cause of shedding in women.</td></tr>
+            <tr><td><strong>Vitamin D</strong></td><td>30–100 ng/mL</td><td>40–60 ng/mL</td><td>Tied to the follicle growth cycle.</td></tr>
+            <tr><td><strong>TSH</strong></td><td>0.4–4.0 mIU/L</td><td>1.0–2.5 mIU/L</td><td>A "normal" 3.8 can still drive diffuse loss.</td></tr>
+          </tbody>
+        </table>
+
+        <h4>It reasons across the timeline</h4>
+        <p>Treatments are time-aware, so the readout can tell encouraging signal from expected side-effect:</p>
+        <ul class="cs-list">
+          <li>Minoxidil + more shedding at week 4 → "Initial shedding is normal: it's pushing resting hairs out to make room. Usually resolves by month 3." (Reassurance, with evidence.)</li>
+          <li>Iron started, ferritin 15 → 38 → "Real progress. Keep going. The target for hair is above 70."</li>
+          <li>Low ferritin, no iron logged → a flagged gap: "the most addressable cause of your shedding isn't being treated."</li>
+        </ul>
+        <p>The output is shaped, not dumped: lead with what's working, flag concerns with evidence rather than fear, name the gaps, and hand over specific questions for the next appointment.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- DESIGN DECISIONS -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">05 · Design decisions</div>
+      <div class="cs-body">
+        <h3>Anti-alarm by default</h3>
+        <p>This audience is already anxious. A red "ABNORMAL" banner on a lab value is technically accurate and emotionally destructive. So the entire status system is built to inform without frightening: same information, calmer register.</p>
+        <table class="cs-table">
+          <thead><tr><th>Value</th><th>Label</th><th>Tone</th></tr></thead>
+          <tbody>
+            <tr><td>In healthy range</td><td><strong>In range</strong></td><td>Neutral. No commentary needed.</td></tr>
+            <tr><td>Low side of normal</td><td><strong>On the low side</strong></td><td>"Within range but on the lower end, worth keeping an eye on."</td></tr>
+            <tr><td>Below range</td><td><strong>Below range</strong></td><td>"Below the typical range, worth discussing with your doctor."</td></tr>
+          </tbody>
+        </table>
+        <div class="specimen">
+          <div class="swatch"><div class="chip" style="background:#B8D4C8"></div><div class="meta"><div class="nm">In range</div><div class="hx">Sage · #B8D4C8</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#F0C987"></div><div class="meta"><div class="nm">Worth watching</div><div class="hx">Amber · #F0C987</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#E8627C"></div><div class="meta"><div class="nm">Worth discussing</div><div class="hx">Rose · #E8627C</div></div></div>
+        </div>
+        <p><strong>Never:</strong> "Danger," "Critical," "Abnormal," red fills, exclamation marks. <strong>Always:</strong> "worth discussing," "worth monitoring," "your doctor can help interpret this." The AI's whole personality is a knowledgeable, calm, evidence-based companion: it celebrates progress, reassures with evidence, and never uses fear to drive action.</p>
+
+        <h4>The payoff is a two-minute doctor visit</h4>
+        <p>The exportable report isn't a data dump. It's a structured clinical summary: what the patient reports, the lab trends, the treatments and durations, the response, and the questions to discuss. It saves the dermatologist fifteen minutes and gives them something they almost never get: months of continuous, organised data.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- SCOPE -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">06 · Scope discipline</div>
+      <div class="cs-body">
+        <p>The free product is four evidence pillars, each kept ruthlessly fast for Priya: a 60-second shed count with baseline and trend, guided standardized photos with a ghost-overlay for alignment, a 2–4 month trigger timeline, and manual lab entry, all exportable as the doctor-ready PDF. The AI readout is the paid layer.</p>
+        <p>What I deliberately left out says as much as what I built:</p>
+        <div class="cs-cards">
+          <div class="cs-card"><div class="n">Deferred</div><h5>Photo / lab-image OCR</h5><p>Would put health images in front of a third-party model. Cut to v1.1 to keep them on-device.</p></div>
+          <div class="cs-card"><div class="n">Excluded</div><h5>Daily adherence nags</h5><p>That's a pill-reminder app. ruwth is an evidence log: the value is the record, not the nag.</p></div>
+          <div class="cs-card"><div class="n">Excluded</div><h5>Drug-interaction warnings</h5><p>Medical liability. "Discuss with your doctor" is the honest, safe boundary.</p></div>
+          <div class="cs-card"><div class="n">Compliance</div><h5>Web checkout, not IAP</h5><p>The paid readout bills through Stripe on the web, respecting Apple's anti-steering rules.</p></div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- STATUS -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">07 · Honest status</div>
+      <div class="cs-body">
+        <div class="cs-status building">
+          <div class="lbl">Where it actually is</div>
+          <p>Built end-to-end and running on a physical device. The four evidence pillars, the doctor PDF export, and the privacy-bounded AI readout (JWT-auth edge function, per-readout consent gate, usage rate-limit, and a structured schema that forces calm, non-diagnostic, baseline-only output) are all coded and committed, with zero npm vulnerabilities and a written privacy contract. It is <strong>not</strong> on TestFlight or the App Store yet, and it has no paying users. The remaining work is the live model key, the Stripe checkout deploy, and store submission.</p>
+        </div>
+        <p>I'm stating that plainly because the discipline of this project (privacy-first AI over sensitive health data, anxiety-aware clinical UX, non-diagnostic language) only counts if the claims around it are honest too. The product is real and demonstrable. It hasn't met its first user yet.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <div class="cs-next">
+    <span class="lbl">Next case →</span>
+    <a href="brain-os.html">Brain OS</a>
+  </div>
+
+  <footer>
+    <span class="f-item">© 2026 Tasha Amanda</span>
+    <div class="f-links">
+      <a href="../index.html#work">All work</a>
+      <a href="../index.html#top">Home ↑</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=type13"></script>
+  <!-- Cloudflare Web Analytics (privacy-first, cookieless). Get your token: Cloudflare dashboard > Web Analytics > add site (tashaamanda.com) > copy the beacon token, then replace PASTE_YOUR_CLOUDFLARE_TOKEN below. (If you host the domain on Cloudflare with the proxy on, you can delete this and use Automatic Setup instead.) -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "PASTE_YOUR_CLOUDFLARE_TOKEN"}'></script>
+</body>
+</html>

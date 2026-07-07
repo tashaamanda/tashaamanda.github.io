@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brain OS: AI memory operating system · Tasha Amanda</title>
+  <meta name="description" content="Brain OS is an AI memory operating system for makers. Product, brand, design system and front-end, shipped as an open-core npm package plus a live, security-reviewed cloud. A case study by Tasha Amanda." />
+  <meta name="theme-color" content="#080808" />
+  <link rel="canonical" href="https://tashaamanda.com/work/brain-os.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Brain OS: AI memory operating system · Tasha Amanda" />
+  <meta property="og:description" content="Brain OS is an AI memory operating system for makers. Product, brand, design system and front-end, shipped as an open-core npm package plus a live, security-reviewed cloud. A case study by Tasha Amanda." />
+  <meta property="og:url" content="https://tashaamanda.com/work/brain-os.html" />
+  <meta property="og:image" content="https://tashaamanda.com/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Brain OS: AI memory operating system · Tasha Amanda" />
+  <meta name="twitter:image" content="https://tashaamanda.com/assets/og-image.png" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23ffa6dd'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=type13" />
+</head>
+<body class="w-brainos">
+  <canvas class="site-bg" aria-hidden="true"></canvas>
+  <div class="scroll-progress"></div>
+  <a class="cs-back" href="../index.html#work"><span class="arr">←</span> All work</a>
+
+  <!-- HERO -->
+  <header class="cs-hero">
+    <div class="wrap">
+      <p class="cs-kicker">Case 02 · AI infrastructure · Product + brand + build</p>
+      <h1 class="cs-title">Brain OS</h1>
+      <p class="cs-tagline">An AI memory operating system for makers, and the system I use to run every other project here. I shipped the <em>product, the cloud, the brand and the design system</em>.</p>
+
+      <div class="cs-meta-grid">
+        <div class="cs-meta"><div class="k">Role</div><div class="v">Product · Brand &amp; design system · Front-end</div></div>
+        <div class="cs-meta"><div class="k">Stack</div><div class="v">MCP · Cloudflare Workers · Vite · Three.js</div></div>
+        <div class="cs-meta"><div class="k">Shape</div><div class="v">Open-core: public npm + hosted cloud</div></div>
+        <div class="cs-meta"><div class="k">Status</div><div class="v"><span class="status status--shipped">Shipped · npm + live cloud</span></div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LIVE PRODUCT SHOT -->
+  <section class="showcase dark">
+    <div class="wrap">
+      <div class="mockup-browser">
+        <div class="bar"><i></i><i></i><i></i><span class="url">brainos-hq.com</span></div>
+        <img src="../assets/img/brain-os-home.png" alt="Brain OS live homepage: the hero, install command and gap-claim positioning" loading="lazy" />
+      </div>
+      <p class="mockup-cap">The live site · <a href="https://brainos-hq.com" target="_blank" rel="noopener">brainos-hq.com</a></p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">01 · The problem</div>
+      <div class="cs-body">
+        <p class="cs-lead">AI coding tools have memory of your conversations. They still forget the state of your project.</p>
+        <p>Chat history remembers what you said. It doesn't hold the things that actually run a project: the decisions you've already made and shouldn't relitigate, what's blocked, what has momentum, what you chose <em>not</em> to do and why. So every new session (and every switch between tools) starts with the same tax: re-explaining where things are.</p>
+        <p>Brain OS is built around that one honest gap: <strong>operational state, not transcripts.</strong> A memory layer that holds a project's real status and decisions, and follows you across the tools you already work in.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- THE PRODUCT -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">02 · The product</div>
+      <div class="cs-body">
+        <p>Brain OS connects over MCP, so the same memory is reachable from Claude Code, Cursor, ChatGPT and Grok. Ask "what changed last session?" or "does this conflict with a past decision?" and it answers from structured state instead of guesswork. It ships in two halves:</p>
+        <div class="cs-cards">
+          <div class="cs-card"><div class="n">Open core</div><h5>brain-os on npm</h5><p>A public package developers install into their own setup. The open, self-hosted foundation.</p></div>
+          <div class="cs-card"><div class="n">Hosted</div><h5>Brain OS Cloud</h5><p>A live connector at app.brainos-hq.com: accounts, dashboard, and one memory that travels across every connected tool.</p></div>
+        </div>
+        <p>The open-core split is itself a product decision: the npm core is frozen at a stable version, and new capability promotes to the cloud, keeping the public foundation dependable while the hosted product moves. Onboarding uses a PKCE-only public OAuth client, so a developer never has to handle a shared client secret to connect.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- TRUST UX -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">03 · Designing trust into AI memory</div>
+      <div class="cs-body">
+        <h3>If an AI can silently rewrite your source of truth, the memory is worthless.</h3>
+        <p>The hardest design problem here isn't visual. It's governance. When AI connectors can write to the same memory humans rely on, you have to decide what an AI is allowed to change. My answer became a core interaction rule:</p>
+        <ul class="cs-list">
+          <li><strong>AI proposes, the human commits.</strong> Anything an AI connector writes lands as a <em>candidate</em>, never as directly-trusted truth.</li>
+          <li><strong>Protected fields can't be overwritten by a connector.</strong> The facts a project depends on are off-limits to silent machine edits.</li>
+          <li><strong>A human approval gate</strong> sits between a suggestion and the canonical record.</li>
+        </ul>
+        <p>It's the same instinct as the anti-alarm work in ruwth, pointed at a different risk: the interface has to make the system trustworthy by default, not just capable. A memory you can't trust is worse than no memory at all.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- BRAND & VOICE -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">04 · Brand &amp; voice system</div>
+      <div class="cs-body">
+        <p class="cs-lead">"Operational state, not transcripts." The positioning had to read as infrastructure, not AI-assistant marketing.</p>
+        <p>I designed the whole identity to its own documented rules, with colour, type, motion and voice as one system:</p>
+        <ul class="cs-list">
+          <li><strong>Pure-black canvas, restrained accent.</strong> An 80 / 15 / 5 ratio over true black, with an indigo → cyan → violet gradient reserved only for hero punch words. A Three.js starfield reads as dust against the black: the one signature moment.</li>
+          <li><strong>Type as a credibility signal.</strong> Inter for marketing weight, JetBrains Mono for the install command: that single mono line is the conversion moment, signalling "real CLI tool," not "chat wrapper."</li>
+          <li><strong>A voice with a banned-phrases list.</strong> No "revolutionary," "AI-powered," "supercharge," "the future of." A gap-claim posture: claim what shipped, tease what's imminent, leave the roadmap as roadmap.</li>
+          <li><strong>Honest comparison pages.</strong> The /vs/ pages frame competitors as a legitimately different category ("complementary, not competing") rather than "we're better, they're worse."</li>
+        </ul>
+        <p>That restraint is the brand. For a developer audience, the fastest way to lose trust is to sound like every other AI landing page, so the design system's job was to sound like none of them.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- RECALL -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">05 · Measured, not vibes</div>
+      <div class="cs-body">
+        <p>Recall is the product: if it surfaces the wrong memory, nothing else matters. So it's a hybrid: semantic embeddings + keyword matching + structural ranking, fused together. And it's measured against a real corpus, not eyeballed.</p>
+        <p>That discipline paid off concretely: a recall score sitting at <strong>0.11</strong> turned out to be an embedding-shape bug, not a model limit. Fixing it lifted real-corpus recall to <strong>0.94</strong>. The lesson I carry from it (into design as much as engineering) is to instrument the thing you care about and let the number, not the vibe, tell you whether it works.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- STATUS -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">06 · Honest status</div>
+      <div class="cs-body">
+        <div class="cs-status">
+          <div class="lbl">Where it actually is</div>
+          <p>Shipped. The package is published to the public npm registry; Brain OS Cloud is live at app.brainos-hq.com with login, register and dashboard. The codebase carries <strong>169 passing tests</strong> and a privacy-gate that fails the build if private state would ever leak, and it <strong>passed a security review</strong> with no critical or high findings: per-user tenant isolation, hashed tokens at rest, rate-limited OAuth. It's in <strong>controlled beta</strong> with the first external users onboarded. Honest framing: it's real, shipped and security-reviewed, but it's an early beta, not a mass-adopted product.</p>
+        </div>
+        <p>Brain OS is the clearest evidence that I can carry a product the whole distance: from a sharp problem statement, through a brand and design system, to a live, tested, secured service that other people can actually sign into.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <div class="cs-next">
+    <span class="lbl">Next case →</span>
+    <a href="gigly.html">Gigly</a>
+  </div>
+
+  <footer>
+    <span class="f-item">© 2026 Tasha Amanda</span>
+    <div class="f-links">
+      <a href="../index.html#work">All work</a>
+      <a href="../index.html#top">Home ↑</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=type13"></script>
+  <!-- Cloudflare Web Analytics (privacy-first, cookieless). Get your token: Cloudflare dashboard > Web Analytics > add site (tashaamanda.com) > copy the beacon token, then replace PASTE_YOUR_CLOUDFLARE_TOKEN below. (If you host the domain on Cloudflare with the proxy on, you can delete this and use Automatic Setup instead.) -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "PASTE_YOUR_CLOUDFLARE_TOKEN"}'></script>
+  <script src="../assets/js/hero-bg.js?v=type13"></script>
+</body>
+</html>

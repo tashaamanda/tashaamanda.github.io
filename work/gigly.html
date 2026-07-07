@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gigly: AI booking marketplace · Tasha Amanda</title>
+  <meta name="description" content="Gigly is a two-sided AI booking marketplace for live performers. AI price intelligence, a six-state negotiation deal room, and in-platform deposits. A complex-UX case study by Tasha Amanda." />
+  <meta name="theme-color" content="#080808" />
+  <link rel="canonical" href="https://tashaamanda.com/work/gigly.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Gigly: AI booking marketplace · Tasha Amanda" />
+  <meta property="og:description" content="Gigly is a two-sided AI booking marketplace for live performers. AI price intelligence, a six-state negotiation deal room, and in-platform deposits. A complex-UX case study by Tasha Amanda." />
+  <meta property="og:url" content="https://tashaamanda.com/work/gigly.html" />
+  <meta property="og:image" content="https://tashaamanda.com/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gigly: AI booking marketplace · Tasha Amanda" />
+  <meta name="twitter:image" content="https://tashaamanda.com/assets/og-image.png" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23ffa6dd'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=type13" />
+</head>
+<body class="w-pf">
+  <canvas class="site-bg" aria-hidden="true"></canvas>
+  <div class="scroll-progress"></div>
+  <a class="cs-back" href="../index.html#work"><span class="arr">←</span> All work</a>
+
+  <!-- HERO -->
+  <header class="cs-hero">
+    <div class="wrap">
+      <p class="cs-kicker">Case 03 · Two-sided marketplace · Complex flows + AI</p>
+      <h1 class="cs-title" data-scramble="Gigly">Gigly</h1>
+      <p class="cs-tagline">A two-sided AI booking marketplace for live performers. The whole product hinges on one hard thing: making an artist's <em>worth visible</em>, then moving real money safely between strangers.</p>
+
+      <div class="cs-meta-grid">
+        <div class="cs-meta"><div class="k">Role</div><div class="v">Product · UX · Front-end build</div></div>
+        <div class="cs-meta"><div class="k">Stack</div><div class="v">Next.js · Firebase · Gemini · Stripe</div></div>
+        <div class="cs-meta"><div class="k">Scope</div><div class="v">22 screens · two sides · one shared deal room</div></div>
+        <div class="cs-meta"><div class="k">Status</div><div class="v"><span class="status status--building">Core loop built</span></div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROBLEM -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">01 · The keystone</div>
+      <div class="cs-body">
+        <p class="cs-lead">An independent artist can't quote a price with confidence. A business can't tell who's good or what's fair. Both problems are the same problem: worth is invisible.</p>
+        <p>For the performer (a rising DJ, say), corporate work is gatekept by a booker who takes a 30% cut, and when a direct opportunity does appear, they freeze on the number because they don't know their market rate. For the business booking entertainment, every enquiry comes back as "price depends," there's no objective signal of an act's quality, and the whole thing takes three days across WhatsApp DMs.</p>
+        <p>So I anchored the entire product on a single keystone: <strong>make an artist's market worth and credibility visible.</strong> Both sides' "aha" turns out to be the same sentence: the artist sees what they're worth; the business sees who's good and what's fair.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- AI PRICE -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">02 · AI price intelligence</div>
+      <div class="cs-body">
+        <h3>The artist's moment: "Oh, I'm worth this."</h3>
+        <p>During onboarding the artist links Spotify and self-reports their social reach and experience. The AI returns a suggested price range <em>with its reasoning</em>, which they can accept or override. It's the time-to-value moment of the whole product, so the design judgment inside it matters: the model weights <strong>experience and reliability over raw follower count</strong>.</p>
+        <p>That choice is visible in the output. An experienced, low-profile working DJ gets a higher suggested range than a viral newcomer with a fraction of the gigs behind them:</p>
+        <table class="cs-table">
+          <thead><tr><th>Profile</th><th>Signal</th><th>Suggested range</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Quiet pro</strong></td><td>Deep experience, modest following</td><td>~7.5–11.5M IDR</td></tr>
+            <tr><td><strong>Viral newcomer</strong></td><td>~150× the followers, few gigs</td><td>~4.5–8M IDR</td></tr>
+          </tbody>
+        </table>
+        <p>Worth isn't reach. Encoding that into the first number an artist ever sees is what makes the suggestion feel fair instead of insulting, and it's why the artist trusts the platform enough to sell through it.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">03 · Two sides, one room</div>
+      <div class="cs-body">
+        <p>The information architecture is the real difficulty: two completely different mental models ("sell myself" and "fill a slot") that have to converge in one place without confusing either side. I mapped it as four zones, with everything funnelling into a single shared deal room.</p>
+        <div class="cs-flow">
+<span class="step">AUTH</span> <span class="arr">──▶</span> <span class="step">ARTIST ZONE</span>  (9)        <span class="step">BUSINESS ZONE</span> (9)
+            sell yourself            fill a slot
+                 │                        │
+                 └───────────┬────────────┘
+                             ▼
+                   <span class="aha">SHARED DEAL ROOM</span> (3)
+              negotiation · booking · payment
+        </div>
+        <p>Twenty-two screens in total. The artist browses matched gigs and applies with a quote; the business posts a gig in plain language, gets an AI-structured brief, and works a ranked shortlist of artists with prices and worth-signals already attached. That's the business "aha": <em>who's good and what's fair</em>, on one screen. Both paths then meet in the same room.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- NEGOTIATION -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">04 · The negotiation thread</div>
+      <div class="cs-body">
+        <p class="cs-lead">Every booking on the platform flows through one screen. It can't just be a chat. It has to hold a contract.</p>
+        <p>The deal room pairs a message thread with a <strong>structured terms panel</strong> (date and time, fee, duration, deposit %, equipment and rider, cancellation policy, payment method) and runs them through an explicit six-state machine:</p>
+        <div class="cs-flow">
+<span class="step">proposed</span> <span class="arr">──▶</span> <span class="step">countered</span> <span class="arr">──▶</span> <span class="step">agreed</span> <span class="arr">──▶</span> <span class="step">confirmed</span> <span class="arr">──▶</span> <span class="aha">deposit&nbsp;paid</span>
+        </div>
+        <p>Making the terms first-class objects, not sentences buried in a chat log, is what keeps "we have a deal" unambiguous for both parties. This screen is the critical path and the bottleneck: it's shared by both roles, every booking depends on it, and it's where money is about to move, so it had to be the most robust thing in the product. The design work was as much about state and clarity as about layout.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- MONEY -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">05 · Moving money safely</div>
+      <div class="cs-body">
+        <h3>The existential risk in any marketplace: both sides take the intro off-platform, and you earn nothing.</h3>
+        <p>The defence isn't a wall: it's making the on-platform path the easier, safer one. The deposit, the cancellation policy and dispute protection all live in-platform, so leaving means giving up the very things that make the booking feel secure.</p>
+        <ul class="cs-list">
+          <li><strong>Deposit at booking</strong> through Stripe, plus a platform commission: charges computed server-side, fulfilment via an idempotent webhook.</li>
+          <li><strong>A cancellation policy carried inside the agreed quote</strong>, so the protection is part of the deal, not an afterthought.</li>
+          <li><strong>Locked down by default</strong>: deny-by-default Firestore rules, rate-limited AI and payment endpoints, and ownership assertions on every privileged write.</li>
+        </ul>
+        <p>Security wasn't a later pass. For a product whose entire reason to exist is trust between strangers handling money, the safe-by-default posture is part of the user experience.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- STATUS -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">06 · Honest status</div>
+      <div class="cs-body">
+        <div class="cs-status building">
+          <div class="lbl">Where it actually is</div>
+          <p>The core booking loop is built (post a gig, confirm the AI brief, discover and rank artists, negotiate in the deal room, confirm, and reach the deposit payment screen), and the AI price suggestion is verified working end-to-end. It's an active build toward a hackathon deadline. What's <strong>not</strong> live yet: the Stripe test keys and Firebase service account aren't wired in production, so payment and write flows are gated; a synthetic-auth dev bypass still has to be removed before any real deploy; and there are no real users yet. Discovery runs on twelve seed artist profiles built for the demo.</p>
+        </div>
+        <p>I include Gigly because it's the clearest example of designing genuinely complex flows (a two-sided IA, an AI valuation step, and a stateful negotiation-to-payment machine) and holding them to a real-product standard rather than a demo-day one.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <div class="cs-next">
+    <span class="lbl">Next case →</span>
+    <a href="bitmask.html">Bitmask</a>
+  </div>
+
+  <footer>
+    <span class="f-item">© 2026 Tasha Amanda</span>
+    <div class="f-links">
+      <a href="../index.html#work">All work</a>
+      <a href="../index.html#top">Home ↑</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=type13"></script>
+  <!-- Cloudflare Web Analytics (privacy-first, cookieless). Get your token: Cloudflare dashboard > Web Analytics > add site (tashaamanda.com) > copy the beacon token, then replace PASTE_YOUR_CLOUDFLARE_TOKEN below. (If you host the domain on Cloudflare with the proxy on, you can delete this and use Automatic Setup instead.) -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "PASTE_YOUR_CLOUDFLARE_TOKEN"}'></script>
+  <script src="../assets/js/hero-bg.js?v=type13"></script>
+</body>
+</html>

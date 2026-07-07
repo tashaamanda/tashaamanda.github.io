@@ -1,0 +1,17 @@
+# Tasha Amanda — Product Designer & Builder
+
+> Tasha Amanda is a product designer and front-end builder who takes AI products from the messy problem all the way to a shipped screen: user research, UX flows, design systems, and production front-end code. Web3 marketplaces first, AI-native tools now.
+
+## Selected work
+- [ruwth](https://tashaamanda.com/work/ruwth.html): privacy-first iOS health app that turns sudden hair-shedding into a structured, doctor-ready evidence record. Built, running on device.
+- [Brain OS](https://tashaamanda.com/work/brain-os.html): an AI memory operating system for makers, shipped as an open-core npm package plus a live, security-reviewed cloud.
+- [Gigly](https://tashaamanda.com/work/gigly.html): a two-sided AI booking marketplace for live performers, with AI price intelligence and a stateful negotiation-to-deposit deal room.
+- [Bitmask](https://tashaamanda.com/work/bitmask.html): a self-custodial Bitcoin wallet in a browser extension; grew past one million wallets created.
+- [DIBA](https://tashaamanda.com/work/diba.html): the first Bitcoin-native NFT marketplace, built on RGB smart contracts, launched on mainnet at Bitcoin 2023.
+- [Harvest's Best](https://harvestsbest.com): bilingual (EN/ID) marketing site for frozen produce; live in production.
+
+## Skills
+Product design, UX design, design systems, AI product design, privacy-first AI UX, Web3/wallet UX, front-end development (React, React Native, Next.js).
+
+## Contact
+hello@tashaamanda.com
