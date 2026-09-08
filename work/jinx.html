@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-55PNJ9Z9YM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-55PNJ9Z9YM');
+  </script>
+  <title>Jinx · A voice-first AI mirror · Tasha Amanda</title>
+  <meta name="description" content="Jinx (jinx.ai) is a voice-first AI mirror: a companion that remembers you, reads how guarded you are, and reflects instead of flatters. Built on a three-layer conversational architecture. A case study by Tasha Amanda, with a live in-browser demo." />
+  <meta name="theme-color" content="#080808" />
+  <link rel="canonical" href="https://tashaamanda.com/work/jinx.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Jinx · A voice-first AI mirror · Tasha Amanda" />
+  <meta property="og:description" content="A voice-first AI mirror that remembers you and reflects instead of flatters. Live in-browser demo. A case study by Tasha Amanda." />
+  <meta property="og:url" content="https://tashaamanda.com/work/jinx.html" />
+  <meta property="og:image" content="https://tashaamanda.com/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jinx · A voice-first AI mirror · Tasha Amanda" />
+  <meta name="twitter:image" content="https://tashaamanda.com/assets/og-image.png" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23080808'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23ffa6dd'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css?v=type13" />
+  <style>
+    /* Jinx case study: full-screen demo hero */
+    .jinx-demo-hero { position: relative; width: 100%; height: 90vh; height: 90svh; min-height: 520px; background: #05060c; overflow: hidden; }
+    .jinx-demo-hero iframe { width: 100%; height: 100%; }
+    body.w-jinx .cs-back { position: fixed; top: 16px; left: var(--pad); margin: 0; z-index: 8001;
+      background: rgba(5,6,12,.5); padding: 7px 12px; border-radius: 999px;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+    body.w-jinx .cs-hero { padding-top: 88px; }
+    @media (max-width: 700px) { body.w-jinx .cs-hero { padding-top: 44px; } }
+  </style>
+</head>
+<body class="w-pf w-jinx">
+  <div class="scroll-progress"></div>
+  <a class="cs-back" href="../index.html#work"><span class="arr">←</span> All work</a>
+
+  <!-- FULL-SCREEN LIVE DEMO (hero) -->
+  <section class="jinx-demo-hero" aria-label="Live Jinx demo — tap the sphere to start">
+    <iframe
+      src="../demos/jinx-voice-field-demo.html"
+      title="Jinx — live voice field demo"
+      allow="microphone"
+      style="display:block;width:100%;height:100%;border:0;background:#05060c;"></iframe>
+  </section>
+
+  <!-- INTRO (after the demo) -->
+  <header class="cs-hero">
+    <div class="wrap">
+      <p class="cs-kicker">Case 01 · AI companion · Voice &amp; conversational design</p>
+      <h1 class="cs-title">Jinx</h1>
+      <p class="cs-tagline">Most AI flatters you and forgets you. Jinx is designed as a <em>mirror</em>: something you talk to out loud, that remembers who you are, reads how guarded you're being, and reflects instead of pleases.</p>
+
+      <div class="cs-meta-grid">
+        <div class="cs-meta"><div class="k">Role</div><div class="v">Product · UX · Voice &amp; conversational design · Front-end build (solo)</div></div>
+        <div class="cs-meta"><div class="k">Stack</div><div class="v">FastAPI · SQLite · Claude · Web Audio + VAD · PWA</div></div>
+        <div class="cs-meta"><div class="k">Home</div><div class="v">jinx.ai · a personal AI companion</div></div>
+        <div class="cs-meta"><div class="k">Status</div><div class="v"><span class="status status--building">Live · private alpha (invite-only)</span></div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROBLEM -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">01 · The problem</div>
+      <div class="cs-body">
+        <p class="cs-lead">A chat box is the wrong shape for the thing people actually want from AI.</p>
+        <p>The dominant form of AI is a text field that answers questions and agrees with you. It's useful, but it has two design flaws baked in. It <strong>forgets</strong>: every session starts from zero, so it can never actually know you. And it <strong>flatters</strong>: it's tuned to be agreeable, which is the opposite of what you need from something you'd trust with your own thinking.</p>
+        <p>What a lot of people are reaching for isn't a smarter answer engine. It's a presence: something that remembers the last thing you said last week, notices when you're deflecting, and pushes back when you're kidding yourself. That's not a chat box. That's a mirror. And a mirror needs a completely different interface, memory model, and personality than an assistant does.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- THE IDEA -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">02 · The idea</div>
+      <div class="cs-body">
+        <h3>One reply, produced by three minds arguing behind the glass.</h3>
+        <p>A flattering answer is what you get when a single model tries to be helpful in one pass. Jinx is built so that no reply reaches you until it has survived an internal argument. Every turn runs through three layers:</p>
+        <ul class="cs-list">
+          <li><strong>Analyst</strong> reads the turn before responding: what you actually said underneath the words, how open or cynical you're being right now, what's really being asked.</li>
+          <li><strong>Mirror</strong> is the voice you hear. It reflects rather than answers, tuned by the Analyst's read so it meets you where you actually are instead of where the words pretend you are.</li>
+          <li><strong>Critic</strong> checks the reflection before it ships: is this true, or is it just pleasing? Is it a real observation, or a horoscope that would fit anyone?</li>
+        </ul>
+        <p>The whole system is designed around a single refusal: it will not tell you what you want to hear if that isn't what's true. That is a product decision as much as a technical one, and it shapes everything downstream, from the memory model to the way it speaks.</p>
+        <div class="cs-quote">An assistant optimises for your approval. A mirror optimises for your accuracy. Those are different products, and they can't share an interface.</div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- THE INTERFACE -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">03 · Designing a thing you talk to</div>
+      <div class="cs-body">
+        <p class="cs-lead">If you're meant to talk to it, not type at it, the screen can't look like a chat app.</p>
+        <p>The demo above is the answer I designed to that. There's no message list, no send button, no chrome competing for attention. There's a <strong>field</strong> and a <strong>sphere</strong>, and the visual <em>is</em> the state: it breathes when it's absent, tightens when it's listening, gathers when it's thinking, and pulses when it speaks. You always know where you are in the conversation without a single label telling you.</p>
+        <p>Two of the controls in the demo are doing real work, not decoration:</p>
+        <ul class="cs-list">
+          <li><strong>Palettes and silhouettes.</strong> Jinx is a companion, and a companion should feel like <em>yours</em>. Letting someone shape the field they talk into is a small act of ownership that changes how the relationship feels, so it's front-and-centre, not buried in settings.</li>
+          <li><strong>Use my mic, as an opt-in.</strong> Voice is the point, but a portfolio visitor shouldn't be ambushed by a permission prompt. So the demo runs a full scripted conversation on a tap, and only asks for the microphone if you explicitly choose to drive the field with your own voice.</li>
+        </ul>
+        <p>The hardest part of a voice interface is the part you never see: knowing when a person has actually finished talking versus just pausing to think. Much of Jinx's real engineering went there, into silence-hold timing, interruption-aware continuation, and letting you barge in mid-sentence without the whole turn collapsing. Get it wrong and it talks over you or leaves you hanging; get it right and it simply feels like it's listening.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">04 · Trust as a design material</div>
+      <div class="cs-body">
+        <p>You don't hand a mirror your real thoughts on day one. So trust isn't assumed; it's read, and the experience adapts to it. The Analyst estimates how open and how cynical you are on every turn, and the Mirror changes its approach accordingly: gentler and more earned when you're guarded, more direct once you've let it in.</p>
+        <ul class="cs-list">
+          <li><strong>It remembers you specifically.</strong> Memory is per-user and persistent: what's worked with you, what's fallen flat, the triggers that open you up or shut you down. The next conversation starts from who you are, not from zero.</li>
+          <li><strong>It earns range over time.</strong> New users meet one voice first; other personas unlock only after a real conversation has happened. Depth is something you're given access to, not dumped with.</li>
+          <li><strong>Different voices, real boundaries.</strong> Several personas each carry their own character and prompt, and one is deliberately walled off with no shared memory at all, because some conversations shouldn't bleed into the rest.</li>
+        </ul>
+        <div class="cs-quote">In a product built to reflect you honestly, trust isn't a feature. It's the thing every other decision has to protect.</div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- STATUS -->
+  <section class="cs-section">
+    <div class="wrap"><div class="cs-layout">
+      <div class="lbl">05 · Honest status</div>
+      <div class="cs-body">
+        <div class="cs-status building">
+          <div class="lbl">Where it actually is</div>
+          <p>Jinx is live and in daily use as a <strong>private, invite-only alpha</strong>. It's multi-user with authentication and strict per-user data isolation, runs the full three-layer pipeline, has a working real-time voice room, per-user memory, multiple personas, and ships as an installable PWA with push. It is under active development and versioned tightly. It is <strong>not</strong> open to the public yet: hardening and a wider beta are the next milestones before it opens up at jinx.ai.</p>
+        </div>
+        <p>The demo at the top of this page is the real interface I designed for it, exported as a self-contained build so you can feel the interaction directly, no signup, nothing sent anywhere. Everything else here is stated at the stage it's genuinely at.</p>
+      </div>
+    </div></div>
+  </section>
+
+  <div class="cs-next">
+    <span class="lbl">Next case →</span>
+    <a href="ruwth.html">ruwth</a>
+  </div>
+
+  <footer>
+    <span class="f-item">© 2026 Tasha Amanda</span>
+    <div class="f-links">
+      <a href="../index.html#work">All work</a>
+      <a href="../index.html#top">Home ↑</a>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js?v=type13"></script>
+  <!-- Cloudflare Web Analytics (privacy-first, cookieless). -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6d5c77263c5c4151a20d59f7d76f1835"}'></script>
+</body>
+</html>
