@@ -11,7 +11,7 @@
 - [DIBA](https://tashaamanda.com/work/diba.html): the first Bitcoin-native NFT marketplace, built on RGB smart contracts, launched on mainnet at Bitcoin 2023.
 
 ## Skills
-Product design, UX design, design systems, AI product design, voice & conversational UX, privacy-first AI UX, Web3/wallet UX, front-end development (React, React Native, Next.js).
+Product design, UX design, design systems, AI product design, voice & conversational UX, privacy-first AI UX, Web3/wallet UX, front-end development.
 
 ## Contact
 hello@tashaamanda.com
