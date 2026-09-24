@@ -32,7 +32,10 @@
   <link rel="stylesheet" href="../assets/css/style.css?v=ember2" />
   <style>
     /* Jinx case study: full-screen demo hero */
-    .jinx-demo-hero { position: relative; width: 100%; height: 90vh; height: 90svh; min-height: 520px; background: #05060c; overflow: hidden; }
+    /* padding-top clears the fixed site nav; no bottom padding so the demo gets the full height
+       (the generic `section` rule would otherwise eat 96px top + bottom) */
+    .jinx-demo-hero { position: relative; width: 100%; height: 90vh; height: 90svh; min-height: 520px; padding: 72px 0 0; background: #05060c; overflow: hidden; }
+    @media (max-width: 900px) { .jinx-demo-hero { padding-top: 64px; } }
     .jinx-demo-hero iframe { width: 100%; height: 100%; }
     body.w-jinx .cs-hero { padding-top: 88px; }
     @media (max-width: 700px) { body.w-jinx .cs-hero { padding-top: 44px; } }
@@ -55,7 +58,7 @@
   <!-- FULL-SCREEN LIVE DEMO (hero) -->
   <section class="jinx-demo-hero" aria-label="Live Jinx demo — tap the sphere to start">
     <iframe
-      src="../demos/jinx-voice-field-demo.html"
+      src="../demos/jinx-voice-field-demo.html?v=2"
       title="Jinx — live voice field demo"
       allow="microphone"
       style="display:block;width:100%;height:100%;border:0;background:#05060c;"></iframe>
