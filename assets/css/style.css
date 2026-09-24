@@ -1,6 +1,6 @@
 /* ============================================================
    Tasha Amanda — Portfolio
-   Design system: dark editorial, pink accent, rebel + elegant.
+   Design system: dark editorial, red→orange accent, rebel + elegant.
    Tokens from design-brain/projects/portfolio.json
    ============================================================ */
 
@@ -43,9 +43,12 @@
   --text-dim:      #888580;
   --text-faint:    #565049;
 
-  --accent:        #ffa6dd;   /* pink */
-  --accent-bright: #ffc2e8;
-  --accent-dim:    #b06a94;
+  --accent-a:      #ff3131;   /* brand gradient start (red) */
+  --accent-b:      #ff914d;   /* brand gradient end (orange) */
+  --accent-gradient: linear-gradient(90deg, var(--accent-a), var(--accent-b));
+  --accent:        #ff613f;   /* solid accent = gradient midpoint */
+  --accent-bright: #ff914d;
+  --accent-dim:    #c2442f;
 
   --green:         #7fae84;   /* status: shipped / live */
   --gold:          #c8a96e;   /* status badges: shipped / live (was green) */
@@ -96,7 +99,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ---------- Scroll progress ---------- */
-.scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, var(--accent-dim), var(--accent-bright)); z-index: 9000; transition: width 80ms linear; }
+.scroll-progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: var(--accent-gradient); z-index: 9000; transition: width 80ms linear; }
 
 /* ---------- Nav ---------- */
 .nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 8000; padding: 22px var(--pad); display: flex; align-items: center; justify-content: space-between; background: linear-gradient(to bottom, rgba(8,8,8,0.92), rgba(8,8,8,0)); backdrop-filter: blur(2px); }
@@ -124,13 +127,13 @@ section { padding: 96px 0; position: relative; }
 .btn .arr { transition: transform var(--t) var(--ease); }
 .btn:hover { border-color: var(--accent); color: var(--accent-bright); }
 .btn:hover .arr { transform: translateX(5px); }
-.btn-primary { border-color: var(--accent-dim); background: rgba(255,166,221,0.06); }
+.btn-primary { border-color: var(--accent-dim); background: rgba(255,97,63,0.06); }
 .btn-ghost { border-color: transparent; padding-left: 0; padding-right: 0; color: var(--text-dim); }
 .btn-ghost:hover { color: var(--accent-bright); }
 
 /* ---------- Hero ---------- */
 .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 90px; position: relative; overflow: hidden; }
-.hero-glow { position: absolute; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(255,166,221,0.10), transparent 62%); pointer-events: none; transform: translate(-50%, -50%); transition: opacity 600ms var(--ease); opacity: 0.7; z-index: 0; }
+.hero-glow { position: absolute; width: 640px; height: 640px; border-radius: 50%; background: radial-gradient(circle, rgba(255,97,63,0.10), transparent 62%); pointer-events: none; transform: translate(-50%, -50%); transition: opacity 600ms var(--ease); opacity: 0.7; z-index: 0; }
 .site-bg { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; display: block; pointer-events: none; }
 .hero-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 0; position: relative; z-index: 1; width: 100%; }
 .hero-left { padding-right: 56px; }
@@ -140,6 +143,15 @@ section { padding: 96px 0; position: relative; }
 @keyframes blink { 0%, 60% { opacity: 1; } 61%, 100% { opacity: 0.25; } }
 /* Hero name — self-hosted Barbra display face, animated by the JS scramble. */
 .hero-name { font-family: 'Barbra', var(--font-display); font-weight: 400; font-size: clamp(52px, 8.5vw, 120px); line-height: 0.98; letter-spacing: 0; color: var(--accent); margin-bottom: 28px; }
+/* Brand gradient text: each hero-name line, animated accent words, portfolio case-study titles.
+   Scramble flashes override via inline -webkit-text-fill-color, then clear back to the gradient. */
+.hero-name .ln, em.scramble-word, body.w-pf .cs-title {
+  width: fit-content; max-width: 100%;   /* gradient spans the text (per line), not the full column */
+  background: var(--accent-gradient);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: var(--accent);
+}
+@supports not (background-clip: text) { .hero-name .ln, em.scramble-word, body.w-pf .cs-title { color: var(--accent); } }
 .hero-name .ln { display: block; }
 .hero-name .char { display: inline-block; white-space: pre; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
@@ -169,7 +181,7 @@ section { padding: 96px 0; position: relative; }
 .work-list { border-top: 1px solid var(--border); margin-top: 12px; }
 .work-row { display: grid; grid-template-columns: 56px 1fr auto; gap: 24px; align-items: start; padding: 34px 20px 34px 16px; border-bottom: 1px solid var(--border); position: relative; transition: background var(--t) var(--ease); }
 .work-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--accent); transform: scaleY(0); transform-origin: bottom; transition: transform var(--t) var(--ease); }
-.work-row:hover { background: linear-gradient(90deg, rgba(255,166,221,0.04), transparent 70%); }
+.work-row:hover { background: linear-gradient(90deg, rgba(255,97,63,0.04), transparent 70%); }
 .work-row:hover::before { transform: scaleY(1); transform-origin: top; }
 .work-index { font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); padding-top: 6px; }
 .work-name { font-family: var(--font-display); font-weight: 300; font-size: clamp(24px, 3vw, 34px); color: var(--text-bright); line-height: 1.1; margin-bottom: 8px; letter-spacing: -0.01em; }
@@ -224,9 +236,9 @@ section { padding: 96px 0; position: relative; }
 .about-lead { font-family: var(--font-display); font-weight: 200; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.35; color: var(--text-bright); letter-spacing: -0.01em; }
 .about-lead em { font-style: italic; color: var(--accent); }
 
-/* Animated accent highlights: Barbra display face, settling to pink.
+/* Animated accent highlights: Barbra display face, settling to the brand gradient.
    'em.scramble-word' outranks the gold '.section-title em' / '.about-lead em' rules above. */
-em.scramble-word { font-family: 'Barbra', var(--font-display); font-style: normal; color: #ffa6dd; letter-spacing: 0; }
+em.scramble-word { font-family: 'Barbra', var(--font-display); font-style: normal; letter-spacing: 0; }
 .about-body p { margin-bottom: 18px; color: var(--text); }
 .about-body p:last-child { margin-bottom: 0; }
 
@@ -251,10 +263,6 @@ footer .f-links a:hover { color: var(--accent-bright); }
 /* ============================================================
    CASE STUDY PAGES
    ============================================================ */
-.cs-back { position: fixed; top: 22px; left: var(--pad); z-index: 8001; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); display: inline-flex; gap: 9px; align-items: center; transition: color var(--t) var(--ease); }
-.cs-back:hover { color: var(--accent-bright); }
-.cs-back .arr { transition: transform var(--t) var(--ease); }
-.cs-back:hover .arr { transform: translateX(-4px); }
 
 .cs-hero { padding: 168px 0 70px; border-bottom: 1px solid var(--border); }
 .cs-kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 26px; }
@@ -309,7 +317,7 @@ footer .f-links a:hover { color: var(--accent-bright); }
 .cs-table th { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border-bright); }
 .cs-table td { padding: 14px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
 .cs-table td strong { color: var(--text-bright); }
-.cs-table tr:hover td { background: rgba(255,166,221,0.03); }
+.cs-table tr:hover td { background: rgba(255,97,63,0.03); }
 
 /* flow diagram (mono ascii-ish) */
 .cs-flow { background: var(--surface); border: 1px solid var(--border); padding: 28px; margin: 26px 0; font-family: 'Space Mono', ui-monospace, monospace; font-size: 12.5px; line-height: 1.9; color: var(--text-dim); overflow-x: auto; }
@@ -319,7 +327,7 @@ footer .f-links a:hover { color: var(--accent-bright); }
 
 /* status banner */
 .cs-status { background: linear-gradient(120deg, rgba(200,169,110,0.06), transparent 70%); border: 1px solid var(--border); border-left: 2px solid var(--gold); padding: 24px 28px; margin: 26px 0; }
-.cs-status.building { border-left-color: var(--accent); background: linear-gradient(120deg, rgba(255,166,221,0.06), transparent 70%); }
+.cs-status.building { border-left-color: var(--accent); background: linear-gradient(120deg, rgba(255,97,63,0.06), transparent 70%); }
 .cs-status .lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
 .cs-status p { margin: 0; color: var(--text); }
 
@@ -332,7 +340,7 @@ footer .f-links a:hover { color: var(--accent-bright); }
 /* ============================================================
    DEVICE MOCKUPS  (real product screenshots)
    ============================================================ */
-.showcase { padding: 60px 0; border-bottom: 1px solid var(--border); background: radial-gradient(120% 90% at 50% 0%, rgba(255,166,221,0.06), transparent 60%); }
+.showcase { padding: 60px 0; border-bottom: 1px solid var(--border); background: radial-gradient(120% 90% at 50% 0%, rgba(255,97,63,0.06), transparent 60%); }
 .showcase.dark { background: radial-gradient(120% 90% at 50% 0%, rgba(99,102,241,0.08), transparent 62%); }
 
 .mockup-browser { border: 1px solid var(--border-bright); border-radius: 12px; overflow: hidden; background: var(--surface); box-shadow: 0 50px 90px -50px rgba(0,0,0,0.85); max-width: 940px; margin: 0 auto; transition: transform var(--t) var(--ease); }
@@ -393,7 +401,7 @@ body.w-brainos .cs-title em, body.w-brainos .cs-tagline em, body.w-brainos .cs-b
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
 }
 
-/* Portfolio-matched case studies (Gigly, Bitmask, DIBA): default pink world +
+/* Portfolio-matched case studies (Gigly, Bitmask, DIBA): default red→orange world +
    Barbra display title, so they read like the landing. ruwth & Brain OS keep
    their own worlds above. */
 body.w-pf .cs-title { font-family: 'Barbra', var(--font-display); font-weight: 400; color: var(--accent); letter-spacing: 0; }
@@ -423,7 +431,6 @@ body.w-pf .cs-title { font-family: 'Barbra', var(--font-display); font-weight: 4
   .cs-layout { grid-template-columns: 1fr; gap: 18px; }
   .cs-layout .lbl { padding-top: 0; }
   .cs-cards, .cs-cards.three { grid-template-columns: 1fr; }
-  .cs-back { position: static; display: inline-flex; margin: 100px var(--pad) 0; }
 }
 
 @media (max-width: 480px) {

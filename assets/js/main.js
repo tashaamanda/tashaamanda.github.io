@@ -21,7 +21,7 @@
     onScroll();
   }
 
-  /* ---------- Custom cursor (pink dot + trailing ring) ---------- */
+  /* ---------- Custom cursor (accent dot + trailing ring) ---------- */
   if (finePointer && !reduceMotion) {
     document.body.classList.add('cursor-on');
     var dot  = document.createElement('div'); dot.className  = 'cursor-dot';
@@ -55,7 +55,10 @@
   var scramblers = document.querySelectorAll('[data-scramble]');
   var glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&*+=/<>';
   // colours that flash while a letter is still scrambling; it locks to the default text colour
-  var scrambleColors = ['#ffa6dd', '#ffc2e8', '#e58fa6', '#b79ce0'];
+  var scrambleColors = ['#ff3131', '#ff613f', '#ff914d', '#ffc08a'];
+  // gradient text uses -webkit-text-fill-color: transparent, so flashes must set that too (color alone is invisible)
+  var flash = function (el, col) { el.style.color = col; el.style.webkitTextFillColor = col; };
+  var unflash = function (el) { el.style.color = ''; el.style.webkitTextFillColor = ''; };
   scramblers.forEach(function (node) {
     var finalText = node.getAttribute('data-scramble');
     var chars = finalText.split('');
@@ -81,12 +84,12 @@
           if (t0 === null) t0 = ts;
           var p = (ts - t0) / dur;
           // lock: final letter, back to the default text colour
-          if (p >= 1) { spans[i].textContent = ch; spans[i].style.color = ''; return; }
+          if (p >= 1) { spans[i].textContent = ch; unflash(spans[i]); return; }
           // decelerate: scramble faster early, slower late
           spans[i].textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
           // flash a new colour every ~55ms so the pops read as distinct, not a blur
           if (ts - lastCol > 55) {
-            spans[i].style.color = scrambleColors[Math.floor(Math.random() * scrambleColors.length)];
+            flash(spans[i], scrambleColors[Math.floor(Math.random() * scrambleColors.length)]);
             lastCol = ts;
           }
           requestAnimationFrame(tick);
@@ -98,7 +101,7 @@
   /* ---------- Heading accent words: scramble-morph on scroll ----------
      Same idea as the title, but per accent word: (optionally) start on a
      decoy word (data-from), scramble through glyphs + colours, then
-     decelerate into the real word and lock to the pink accent colour. */
+     decelerate into the real word and lock to the accent gradient. */
   var morphEls = document.querySelectorAll('.scramble-word');
   if (morphEls.length && !reduceMotion) {
     morphEls.forEach(function (el) { el._finalWord = el.textContent; });
@@ -113,7 +116,7 @@
           if (ch === ' ') { s.textContent = ' '; }
           else {
             s.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
-            s.style.color = scrambleColors[Math.floor(Math.random() * scrambleColors.length)];
+            flash(s, scrambleColors[Math.floor(Math.random() * scrambleColors.length)]);
           }
           el.appendChild(s);
           return s;
@@ -131,10 +134,10 @@
           letters.forEach(function (s, k) {
             var lockAt = (k + 1) / letters.length;
             if (pe >= lockAt) {
-              if (s.textContent !== finalW[k]) { s.textContent = finalW[k]; s.style.color = ''; }
+              if (s.textContent !== finalW[k]) { s.textContent = finalW[k]; unflash(s); }
             } else if (step) {
               s.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
-              s.style.color = scrambleColors[Math.floor(Math.random() * scrambleColors.length)];
+              flash(s, scrambleColors[Math.floor(Math.random() * scrambleColors.length)]);
             }
           });
           requestAnimationFrame(tick);
