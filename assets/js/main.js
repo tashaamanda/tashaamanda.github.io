@@ -188,16 +188,15 @@
   }
 
   /* ---------- Hero mouse-follow warmth ---------- */
-  var glow = document.querySelector('.hero-glow');
-  var hero = document.querySelector('.hero');
-  if (glow && hero && finePointer && !reduceMotion) {
-    hero.addEventListener('mousemove', function (e) {
-      var r = hero.getBoundingClientRect();
-      glow.style.left = (e.clientX - r.left) + 'px';
-      glow.style.top  = (e.clientY - r.top) + 'px';
+  /* ---------- Cursor glow: accent radial that follows the pointer, site-wide ---------- */
+  if (finePointer && !reduceMotion) {
+    var glow = document.createElement('div'); glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+    window.addEventListener('mousemove', function (e) {
+      glow.style.transform = 'translate3d(' + e.clientX + 'px, ' + e.clientY + 'px, 0) translate(-50%, -50%)';
       glow.style.opacity = '1';
-    });
-    hero.addEventListener('mouseleave', function () { glow.style.opacity = '0.55'; });
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', function () { glow.style.opacity = '0.55'; });
   }
 
   /* ---------- Mobile nav ---------- */
