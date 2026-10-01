@@ -340,6 +340,11 @@ footer .f-links a:hover { color: var(--accent-bright); }
 .cs-next .lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); }
 .cs-next a { font-family: var(--font-display); font-weight: 200; font-size: clamp(28px, 4vw, 46px); color: var(--text-bright); transition: color var(--t) var(--ease); }
 .cs-next a:hover { color: var(--accent-bright); }
+.cs-more { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px 28px; padding: 0 var(--pad) 56px; }
+.cs-more .lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-dim); }
+.cs-more-links { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.cs-more-links a { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: var(--text-dim); transition: color var(--t) var(--ease); }
+.cs-more-links a:hover { color: var(--accent-bright); }
 
 /* ============================================================
    DEVICE MOCKUPS  (real product screenshots)

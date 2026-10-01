@@ -1,6 +1,6 @@
 # Tasha Amanda — Product Designer & Builder
 
-> Tasha Amanda is a product designer and front-end builder who takes AI products from the messy problem all the way to a shipped screen: user research, UX flows, design systems, and production front-end code. Web3 marketplaces first, AI-native tools now.
+> Tasha Amanda (also written Amanda Tasha) is a product designer and front-end builder who takes AI products from the messy problem all the way to a shipped screen: user research, UX flows, design systems, and production front-end code. Web3 marketplaces first, AI-native tools now.
 
 ## Selected work
 - [Jinx](https://tashaamanda.com/work/jinx.html): a voice-first AI mirror — a companion you talk to out loud that remembers you, reads how guarded you're being, and reflects instead of flatters. Built on a three-layer (Analyst → Mirror → Critic) conversational architecture. Live private alpha, with an interactive in-browser demo on the case-study page.
@@ -15,3 +15,9 @@ Product design, UX design, design systems, AI product design, voice & conversati
 
 ## Contact
 hello@tashaamanda.com
+
+## Profiles
+- Website: https://tashaamanda.com
+- LinkedIn: https://www.linkedin.com/in/tashaamanda87
+- X: https://x.com/tashaamandaa
+- GitHub: https://github.com/tashaamanda
